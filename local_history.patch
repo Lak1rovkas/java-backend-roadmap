@@ -1,0 +1,63 @@
+Index: week01/day02/src/Grades.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/week01/day02/src/Grades.java b/week01/day02/src/Grades.java
+--- a/week01/day02/src/Grades.java	
++++ b/week01/day02/src/Grades.java	
+@@ -5,16 +5,20 @@
+     public static void main(String[] args){
+         Scanner scanner = new Scanner(System.in);
+         System.out.println("Please write a number between 0 and 100");
++
++        if(!scanner.hasNextInt()) {
++            throw new IllegalArgumentException("Your argument " + scanner.nextInt() + " cannot be read or not valid. Please write a number between 0 and 100");
++        }
++
+         int grade = scanner.nextInt();
+-        if(!scanner.hasNextInt() || grade < 0 || grade > 100) {
+-            throw new IllegalArgumentException("Your argument " + grade + " cannot be read or not valid. Please write a number between 0 and 100");
+-        }
+ 
+-        if(grade >= 90)
++        if(grade < 0 || grade > 100)
++            throw new IllegalArgumentException("Your argument " + grade + " not valid. Please write a number between 0 and 100");
++        else if(grade >= 90)
+             System.out.println("You have been reached an A");
+-        else if(grade >= 80 & grade < 90)
++        else if(grade >= 80)
+                 System.out.println("You have been reached a B");
+-        else if(grade >= 70 & grade < 79)
++        else if(grade >= 70)
+                 System.out.println("You have been reached a C");
+         else
+             System.out.println("You have been reached a F");
+Index: week01/day02/src/TipaBank.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/week01/day02/src/TipaBank.java b/week01/day02/src/TipaBank.java
+new file mode 100644
+--- /dev/null	
++++ b/week01/day02/src/TipaBank.java	
+@@ -0,0 +1,18 @@
++import java.util.Scanner;
++
++public class TipaBank {
++    private static final int BALANCE = 1000;
++    public static void main(String[] args){
++        Scanner sc = new Scanner(System.in);
++        System.out.println("Enter a number of cash, you want to take down");
++
++        if(!sc.hasNextInt())
++            throw new IllegalArgumentException("Please, enter correct number");
++
++        int trying = sc.nextInt();
++        if(trying <= 0 || trying > BALANCE)
++            System.out.println("You can't take down more money than you have");
++        else
++            System.out.println("The money was given successfully!");
++    }
++}
